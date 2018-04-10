@@ -1,0 +1,148 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.0.13-rc-nt
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema jquery_test
+--
+
+CREATE DATABASE IF NOT EXISTS jquery_test;
+USE jquery_test;
+
+--
+-- Definition of table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE `category` (
+  `CategoryId` int(10) unsigned NOT NULL auto_increment,
+  `CategoryName` varchar(45) NOT NULL,
+  `CategoryDetails` varchar(45) NOT NULL,
+  PRIMARY KEY  (`CategoryId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `category`
+--
+
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` (`CategoryId`,`CategoryName`,`CategoryDetails`) VALUES 
+ (5,'Garments','garments'),
+ (6,'Electronics','Electronics'),
+ (7,'Mobiles','This is for Mobiles');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+
+
+--
+-- Definition of table `city`
+--
+
+DROP TABLE IF EXISTS `city`;
+CREATE TABLE `city` (
+  `cityid` int(10) unsigned NOT NULL auto_increment,
+  `cityname` varchar(45) NOT NULL,
+  `stateid` int(10) unsigned NOT NULL,
+  PRIMARY KEY  (`cityid`),
+  KEY `FK_city_1` (`stateid`),
+  CONSTRAINT `FK_city_1` FOREIGN KEY (`stateid`) REFERENCES `state` (`stateid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `city`
+--
+
+/*!40000 ALTER TABLE `city` DISABLE KEYS */;
+INSERT INTO `city` (`cityid`,`cityname`,`stateid`) VALUES 
+ (1,'Bhopal',1),
+ (2,'Indore',1),
+ (3,'Mumbai',2);
+/*!40000 ALTER TABLE `city` ENABLE KEYS */;
+
+
+--
+-- Definition of table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE `products` (
+  `ProductId` int(10) unsigned NOT NULL auto_increment,
+  `CategoryId` int(10) unsigned NOT NULL,
+  `ProductName` varchar(45) NOT NULL,
+  `ProductPrice` float NOT NULL,
+  `StockInHand` int(10) unsigned NOT NULL,
+  `DangerLevel` int(10) unsigned NOT NULL,
+  PRIMARY KEY  (`ProductId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `products`
+--
+
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` (`ProductId`,`CategoryId`,`ProductName`,`ProductPrice`,`StockInHand`,`DangerLevel`) VALUES 
+ (1,5,'T-Shirts',125.5,100,10),
+ (2,6,'MP3 Player',1500,12,12),
+ (3,5,'Shirts',299,200,30),
+ (4,5,'Trousers',700.5,250,50),
+ (5,5,'Jeans',999.9,100,10),
+ (6,5,'Skirts',550,100,40),
+ (7,5,'Sarees',1200,100,30),
+ (8,5,'Suits',800,70,30),
+ (9,6,'DVD Player',2000,50,12),
+ (10,6,'Air Conditioners',10100,20,5),
+ (11,6,'Business Calculators',1050,60,17),
+ (12,6,'Microwaves',7500,20,10),
+ (13,6,'Vaccum Cleaners',1296,10,10),
+ (14,5,'Fax Machines',1899,10,5),
+ (15,7,'Nokia E71',19000,10,4),
+ (16,7,'Nokia 3600',9000,13,4),
+ (17,7,'Moto RAZR',13900,13,4),
+ (18,7,'Motorola MOTOZINE',16675,5,3),
+ (19,7,'Sony Ericsson K220',2490,4,2),
+ (20,7,'Samsung',6499,4,3);
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+
+
+--
+-- Definition of table `state`
+--
+
+DROP TABLE IF EXISTS `state`;
+CREATE TABLE `state` (
+  `stateid` int(10) unsigned NOT NULL auto_increment,
+  `statename` varchar(45) NOT NULL,
+  PRIMARY KEY  (`stateid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `state`
+--
+
+/*!40000 ALTER TABLE `state` DISABLE KEYS */;
+INSERT INTO `state` (`stateid`,`statename`) VALUES 
+ (1,'Madhya Pradesh'),
+ (2,'Maharashtra');
+/*!40000 ALTER TABLE `state` ENABLE KEYS */;
+
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

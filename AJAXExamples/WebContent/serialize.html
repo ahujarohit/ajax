@@ -1,0 +1,31 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Serialize</title>
+    <script src="jquery-1.4.2.js"></script>
+    <script>
+        function a1(url)
+        {
+            var str=$('#form1').serialize();
+           var f_url=url+'&'+str;
+           $('#ans').load(f_url);
+        }
+    </script>
+  </head>
+  <body>
+
+
+<form id="form1">
+        Principle :  <input type="text" name="pr" /><br />
+        Rate :  <input type="text" name="r" /><br />
+        Time :  <input type="text" name="t" /><br />
+        <input type="button" value="Simple Interest" onclick="a1('server3.jsp?f=si')" />
+        <input type="button" value="Compound Interest" onclick="a1('server3.jsp?f=ci')" />
+      </form>
+      <div id="ans"></div>
+  </body>
+</html>
